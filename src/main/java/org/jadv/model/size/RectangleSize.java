@@ -12,7 +12,7 @@ public class RectangleSize extends Size {
     /**
      * Weidth of the object.
      */
-    int weidth;
+    int width;
 
     /**
      * Height of the object.

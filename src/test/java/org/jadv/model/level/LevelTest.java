@@ -18,8 +18,8 @@ public class LevelTest {
      */
     @Test
     public void testAddObject() {
-        Level level = new Level("Testlevel", 1000, 1000);
-        GameObject obj = GameObject.builder().name("Testobject").size(new RectangleSize(10, 10)).build();
+        Level level = new Level("TestLevel", 1000, 1000);
+        GameObject obj = GameObject.builder().name("TestObject").size(new RectangleSize(10, 10)).build();
         level.addObject(obj, 1, 2);
         assertAll(
                 () -> assertEquals(level, level.getObjects().get(0).getPosition().getParent()),
@@ -33,10 +33,10 @@ public class LevelTest {
      */
     @Test
     public void testRemoveObject() {
-        Level level = new Level("Testlevel", 1000, 1000);
-        GameObject obj1 = GameObject.builder().name("Testobject").size(new RectangleSize(10, 10)).build();
+        Level level = new Level("TestLevel", 1000, 1000);
+        GameObject obj1 = GameObject.builder().name("TestObject").size(new RectangleSize(10, 10)).build();
         level.addObject(obj1, 1, 2);
-        GameObject obj2 = GameObject.builder().name("Testobject").size(new RectangleSize(10, 10)).build();
+        GameObject obj2 = GameObject.builder().name("TestObject2").size(new RectangleSize(10, 10)).build();
         level.addObject(obj2, 3, 4);
 
         level.removeObject(obj2);

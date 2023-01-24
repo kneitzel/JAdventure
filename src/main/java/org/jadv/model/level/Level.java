@@ -39,19 +39,7 @@ public class Level extends SavedObject implements Container {
      * Game objects inside the level.
      */
     @JsonAdapter(ListOfSavedObjectAdapter.class)
-    private List<GameObject> objects = new ArrayList<>();
-
-    /**
-     * Creates a new instance of Level.
-     * @param name Name of the level.
-     * @param width Width of the level.
-     * @param height Height of the level.
-     */
-    public Level(String name, int width, int height) {
-        this.name = name;
-        this.width = width;
-        this.height = height;
-    }
+    private final List<GameObject> objects = new ArrayList<>();
 
     public void removeObject(@NonNull GameObject obj) {
         objects.remove(obj);
@@ -63,7 +51,7 @@ public class Level extends SavedObject implements Container {
     }
 
     @Override
-    public List<GameObject> getChilds() {
+    public List<GameObject> getChildren() {
         return objects;
     }
 }

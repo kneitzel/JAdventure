@@ -3,7 +3,7 @@ package org.jadv.model.size;
 import lombok.*;
 
 /**
- * Size of an circular object.
+ * Size of a circular object.
  */
 @Getter
 @AllArgsConstructor

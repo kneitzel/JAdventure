@@ -14,7 +14,7 @@ public class SavedObjectAdapterTest {
 
     @Test
     public void testSerialization() {
-        String jsonRSize = "{\"weidth\":123,\"height\":50,\"type\":\"org.jadv.model.level.size.RectangleSize\"}";
+        String jsonRSize = "{\"width\":123,\"height\":50,\"type\":\"org.jadv.model.size.RectangleSize\"}";
         RectangleSize rSize = new RectangleSize(123, 50);
         Gson gson = new Gson();
         assertEquals(jsonRSize, gson.toJson(rSize, RectangleSize.class));
@@ -22,11 +22,11 @@ public class SavedObjectAdapterTest {
 
     @Test
     public void testDeserialization() {
-        String jsonRSize = "{\"weidth\":123,\"height\":50,\"type\":\"org.jadv.model.level.size.RectangleSize\"}";
+        String jsonRSize = "{\"width\":123,\"height\":50,\"type\":\"org.jadv.model.size.RectangleSize\"}";
         Gson gson = new Gson();
         RectangleSize rSize = (RectangleSize) gson.fromJson(jsonRSize, SavedObject.class);
         assertAll(
-                () -> assertEquals(123, rSize.getWeidth()),
+                () -> assertEquals(123, rSize.getWidth()),
                 () -> assertEquals(50, rSize.getHeight())
         );
     }

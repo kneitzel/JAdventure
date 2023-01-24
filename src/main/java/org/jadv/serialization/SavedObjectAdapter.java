@@ -54,12 +54,12 @@ final public class SavedObjectAdapter implements JsonSerializer<SavedObject>, Js
 
     /**
      * The parent reference inside the Position of a GameObject is transient and is not saved.
-     * So when deserializing an Container, we have to set the parent again.
+     * So when deserializing a container, we have to set the parent again.
      * @param object SavedObject to check and set Parent if required.
      */
     private void setParentReferencesIfRequired(final SavedObject object) {
         if (object instanceof Container container) {
-            container.getChilds().stream()
+            container.getChildren().stream()
                     .map(GameObject::getPosition)
                     .filter(Objects::nonNull)
                     .forEach(p -> p.setParent(container));
@@ -81,7 +81,7 @@ final public class SavedObjectAdapter implements JsonSerializer<SavedObject>, Js
     }
 
     /**
-     * Gets an child element of an JsonObject,
+     * Gets a child element of an JsonObject,
      * @param wrapper Wrapper JsonObject to get the element from.
      * @return The requested JsonElement.
      * @throws JsonParseException Thrown if the requested element is not available.

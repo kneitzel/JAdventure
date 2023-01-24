@@ -5,12 +5,12 @@ import org.jadv.model.objects.GameObject;
 import java.util.List;
 
 /**
- * A Container has a list of GameObject als childs.
+ * A Container has a list of GameObject as children.
  */
 public interface Container {
     /**
      * Gets the List of GameObject children.
-     * @return List of GamrObjects.
+     * @return List of GameObjects.
      */
-    List<GameObject> getChilds();
+    List<GameObject> getChildren();
 }
