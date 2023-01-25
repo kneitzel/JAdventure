@@ -9,8 +9,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Tests the ListOfSavedObjectAdapter.
+ */
 public class ListOfSavedObjectAdapterTest {
 
+    /**
+     * Tests the serialization of an Object (using class Level) that has a list of SavedObject.
+     */
     @Test
     public void testSerialization() {
         String jsonLevel = "{\"name\":\"TestLevel\",\"width\":1000,\"height\":1000,\"objects\":[{\"name\":\"TestObject\",\"size\":{\"width\":10,\"height\":10,\"type\":\"org.jadv.model.size.RectangleSize\"},\"position\":{\"x\":1,\"y\":2},\"type\":\"org.jadv.model.objects.GameObject\"},{\"name\":\"TestObject2\",\"size\":{\"width\":10,\"height\":10,\"type\":\"org.jadv.model.size.RectangleSize\"},\"position\":{\"x\":2,\"y\":3},\"type\":\"org.jadv.model.objects.GameObject\"}],\"type\":\"org.jadv.model.level.Level\"}";
@@ -32,6 +38,9 @@ public class ListOfSavedObjectAdapterTest {
         assertEquals(jsonLevel, json);
     }
 
+    /**
+     * Tests the deserialization of an Object (using class Level) that has a list of SavedObject.
+     */
     @Test
     public void testDeserialization() {
 
@@ -46,10 +55,11 @@ public class ListOfSavedObjectAdapterTest {
                 () -> assertEquals("TestObject", level2.getObjects().get(0).getName()),
                 () -> assertEquals(1, level2.getObjects().get(0).getPosition().getX()),
                 () -> assertEquals(2, level2.getObjects().get(0).getPosition().getY()),
+                () -> assertEquals(level2, level2.getObjects().get(0).getPosition().getParent()),
                 () -> assertEquals("TestObject2", level2.getObjects().get(1).getName()),
                 () -> assertEquals(2, level2.getObjects().get(1).getPosition().getX()),
-                () -> assertEquals(3, level2.getObjects().get(1).getPosition().getY())
-
+                () -> assertEquals(3, level2.getObjects().get(1).getPosition().getY()),
+                () -> assertEquals(level2, level2.getObjects().get(1).getPosition().getParent())
         );
 
     }

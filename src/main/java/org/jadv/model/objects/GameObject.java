@@ -16,6 +16,7 @@ import org.jadv.serialization.SavedObjectAdapter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@EqualsAndHashCode(callSuper=true)
 public class GameObject extends SavedObject {
 
     /**

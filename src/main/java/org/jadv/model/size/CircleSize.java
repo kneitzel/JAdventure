@@ -9,8 +9,8 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@EqualsAndHashCode
-public class CircleSize {
+@EqualsAndHashCode(callSuper=true)
+public class CircleSize extends Size {
     /**
      * Radius of the circle around the object location.
      */
