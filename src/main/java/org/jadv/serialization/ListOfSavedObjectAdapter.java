@@ -11,7 +11,7 @@ import java.util.List;
  * Gson Adapter to (de-)serialize a List of SavedObjects
  * Prefix the List with @JsonAdapter(ListOfSavedObjectAdapter.class) to use this Adapter
  */
-final public class ListOfSavedObjectAdapter implements JsonSerializer<List<SavedObject>>, JsonDeserializer<List<SavedObject>> {
+final public class ListOfSavedObjectAdapter implements JsonSerializer<List<? extends SavedObject>>, JsonDeserializer<List<? extends SavedObject>> {
     /**
      * Serializes a list of SavedInstance to JSON.
      * @param list Object to serialize.
@@ -19,7 +19,7 @@ final public class ListOfSavedObjectAdapter implements JsonSerializer<List<Saved
      * @param context Serialization context.
      * @return The JsonElement that holds the serialized list.
      */
-    public JsonElement serialize(final List<SavedObject> list, final Type interfaceType,
+    public JsonElement serialize(final List<? extends SavedObject> list, final Type interfaceType,
                                  final JsonSerializationContext context) {
         if (list == null) return null;
         final JsonArray array = new JsonArray();
@@ -37,7 +37,7 @@ final public class ListOfSavedObjectAdapter implements JsonSerializer<List<Saved
      * @return The restored list with elements with correct class.
      * @throws JsonParseException Throws an JsonParseException if deserialization is not possible.
      */
-    public List<SavedObject> deserialize(final JsonElement elem, final Type interfaceType,
+    public List<? extends SavedObject> deserialize(final JsonElement elem, final Type interfaceType,
                                          final JsonDeserializationContext context) throws JsonParseException {
         List<SavedObject> result = new ArrayList<>();
         final JsonArray array = (JsonArray) elem;
