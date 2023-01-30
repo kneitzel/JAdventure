@@ -2,6 +2,9 @@ package org.jadv.model.size;
 
 import lombok.*;
 
+/**
+ * Rectangle Size
+ */
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
@@ -10,7 +13,7 @@ import lombok.*;
 public class RectangleSize extends Size {
 
     /**
-     * Weidth of the object.
+     * Width of the object.
      */
     int width;
 
