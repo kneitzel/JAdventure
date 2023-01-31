@@ -42,4 +42,16 @@ public class LevelTest {
         level.removeObject(obj2);
         assertEquals(1, level.getObjects().size());
     }
+
+    /**
+     * Teste the getObjects method.
+     */
+    @Test
+    public void testGetChildren() {
+        Level level = new Level("TestLevel", 1000, 1000);
+        GameObject obj = GameObject.builder().name("TestObject").size(new RectangleSize(10, 10)).build();
+        level.addObject(obj, 1, 2);
+
+        assertEquals(level.getObjects(), level.getChildren());
+    }
 }
