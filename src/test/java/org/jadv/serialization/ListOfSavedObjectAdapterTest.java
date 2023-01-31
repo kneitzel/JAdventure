@@ -61,6 +61,5 @@ public class ListOfSavedObjectAdapterTest {
                 () -> assertEquals(3, level2.getObjects().get(1).getPosition().getY()),
                 () -> assertEquals(level2, level2.getObjects().get(1).getPosition().getParent())
         );
-
     }
 }

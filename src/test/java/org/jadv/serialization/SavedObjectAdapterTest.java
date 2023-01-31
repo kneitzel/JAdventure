@@ -25,6 +25,17 @@ public class SavedObjectAdapterTest {
     }
 
     /**
+     * Test serialization of a SavedObject instance using SavedObject.class.
+     */
+    @Test
+    public void testSerializationWithSavedObject() {
+        String jsonRSize = "{\"width\":123,\"height\":50,\"type\":\"org.jadv.model.size.RectangleSize\"}";
+        RectangleSize rSize = new RectangleSize(123, 50);
+        Gson gson = new Gson();
+        assertEquals(jsonRSize, gson.toJson(rSize, SavedObject.class));
+    }
+
+    /**
      * Test deserialization of a SavedObject instance.
      */
     @Test
