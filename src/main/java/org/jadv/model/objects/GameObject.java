@@ -34,4 +34,9 @@ public class GameObject extends SavedObject {
      * Position of the Object.
      */
     private Position position;
+
+    /**
+     * Resource name of a graphic.
+     */
+    private String graphicResource;
 }

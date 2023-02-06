@@ -18,7 +18,7 @@ public class LevelTest {
      */
     @Test
     public void testAddObject() {
-        Level level = new Level("TestLevel", 1000, 1000);
+        Level level = new Level("TestLevel", 1000, 1000, "testlevel");
         GameObject obj = GameObject.builder().name("TestObject").size(new RectangleSize(10, 10)).build();
         level.addObject(obj, 1, 2);
         assertAll(
@@ -33,7 +33,7 @@ public class LevelTest {
      */
     @Test
     public void testRemoveObject() {
-        Level level = new Level("TestLevel", 1000, 1000);
+        Level level = new Level("TestLevel", 1000, 1000, "testlevel");
         GameObject obj1 = GameObject.builder().name("TestObject").size(new RectangleSize(10, 10)).build();
         level.addObject(obj1, 1, 2);
         GameObject obj2 = GameObject.builder().name("TestObject2").size(new RectangleSize(10, 10)).build();
@@ -44,11 +44,26 @@ public class LevelTest {
     }
 
     /**
-     * Teste the getObjects method.
+     * Tests remove does not throw an exception on Object that is not inside the Instance.
+     */
+    @Test
+    public void testRemoveOfNotAddedObject() {
+        Level level = new Level("TestLevel", 1000, 1000, "testlevel");
+        GameObject obj1 = GameObject.builder().name("TestObject").size(new RectangleSize(10, 10)).build();
+        level.addObject(obj1, 1, 2);
+
+        GameObject obj2 = GameObject.builder().name("TestObject2").size(new RectangleSize(10, 10)).build();
+        level.removeObject(obj2);
+
+        assertEquals(1, level.getObjects().size());
+    }
+
+    /**
+     * Tests the getObjects method.
      */
     @Test
     public void testGetChildren() {
-        Level level = new Level("TestLevel", 1000, 1000);
+        Level level = new Level("TestLevel", 1000, 1000, "testlevel");
         GameObject obj = GameObject.builder().name("TestObject").size(new RectangleSize(10, 10)).build();
         level.addObject(obj, 1, 2);
 
