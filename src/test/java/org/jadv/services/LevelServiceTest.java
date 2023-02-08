@@ -5,15 +5,15 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SavedObjectServiceTest {
+class LevelServiceTest {
     /**
      * Tests loading of a test level resource.
      */
     @Test
     public void testLoadingLevel() {
-        SavedObjectService savedObjectService = new SavedObjectService();
+        LevelService levelService = new LevelService();
 
-        Level level =  savedObjectService.loadLevel("testlevel");
+        Level level =  levelService.loadLevel("testlevel");
 
         assertAll(
                 () -> assertNotNull(level),
@@ -28,9 +28,9 @@ class SavedObjectServiceTest {
      */
     @Test
     public void testFailedLoading() {
-        SavedObjectService savedObjectService = new SavedObjectService();
+        LevelService levelService = new LevelService();
 
-        Level level =  savedObjectService.loadLevel("non/existing");
+        Level level =  levelService.loadLevel("non/existing");
 
         assertNull(level);
     }

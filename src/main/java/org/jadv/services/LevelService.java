@@ -10,7 +10,7 @@ import java.io.InputStreamReader;
 /**
  * Service to load SavedObject of a resource.
  */
-public class SavedObjectService extends ResourceService<Level> {
+public class LevelService extends ResourceService<Level> {
 
     /**
      * type of level resources.
@@ -25,18 +25,8 @@ public class SavedObjectService extends ResourceService<Level> {
     /**
      * Creates a new instance of SavedObjectService.
      */
-    public SavedObjectService() {
+    public LevelService() {
         super(LEVEL_RESOURCE_PATH, LEVEL_RESOURCE_TYPE);
-    }
-
-    /**
-     * Loads a Level of an InputStream
-     * @param inputStream InputStream to load Level from.
-     * @return Loaded level.
-     */
-    protected Level loadLevel(InputStream inputStream) {
-        Gson gson = new Gson();
-        return (Level) gson.fromJson(new InputStreamReader(inputStream), SavedObject.class);
     }
 
     /**
@@ -46,6 +36,17 @@ public class SavedObjectService extends ResourceService<Level> {
      * @return The level if resource was found, else null.
      */
     public Level loadLevel(String resourceName) {
-        return loadResource(resourceName, this::loadLevel);
+        return loadResource(resourceName);
+    }
+
+    /**
+     * Creates a Level resource of an InputStream
+     * @param inputStream InputStream to read the level from.
+     * @return The loaded level.
+     */
+    @Override
+    protected Level createResource(InputStream inputStream) {
+        Gson gson = new Gson();
+        return (Level) gson.fromJson(new InputStreamReader(inputStream), SavedObject.class);
     }
 }

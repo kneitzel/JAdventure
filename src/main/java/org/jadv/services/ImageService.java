@@ -8,7 +8,7 @@ import java.io.InputStream;
 /**
  * Service to provide images.
  */
-public class ImageService {
+public class ImageService extends ResourceService<Image>{
 
     /**
      * Path where we find image resources.
@@ -21,21 +21,29 @@ public class ImageService {
     public static final String IMAGE_RESOURCE_TYPE = ".png";
 
     /**
+     * Creates a new instance of ImageService.
+     */
+    public ImageService() {
+        super(IMAGE_RESOURCE_PATH, IMAGE_RESOURCE_TYPE);
+    }
+
+    /**
      * Gets an image for a resource name.
      * @param resourceName Name of the resource.
      * @return Image of the resource of null if it could not be loaded.
      */
     public Image loadImage(String resourceName) {
-        String resourcePath = IMAGE_RESOURCE_PATH + resourceName + IMAGE_RESOURCE_TYPE;
-        try (InputStream inputStream = getClass().getResourceAsStream(resourcePath)) {
-            if (inputStream == null) {
-                return null;
-            }
-            return ImageIO.read(inputStream);
-        } catch (IOException exception) {
-            System.out.println("Unable to load resource: " + resourcePath + " (" + exception.getMessage() + ")");
-            exception.printStackTrace();
-        }
-        return null;
+        return loadResource(resourceName);
+    }
+
+    /**
+     * Creates an instance of the requested resource.
+     * @param inputStream Stream to read the data from.
+     * @return The requested instance.
+     * @throws IOException OException is thrown if the image cannot be loaded.
+     */
+    @Override
+    protected Image createResource(InputStream inputStream) throws IOException {
+        return ImageIO.read(inputStream);
     }
 }
