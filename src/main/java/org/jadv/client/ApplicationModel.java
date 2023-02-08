@@ -5,10 +5,13 @@ import lombok.Setter;
 import lombok.ToString;
 import org.jadv.model.level.Level;
 
+/**
+ * Model of the Application Window.
+ */
 @Getter
 @Setter
 @ToString
-public class ApplicationModel {
+public class ApplicationModel extends Model {
 
     /**
      * Current level
@@ -29,4 +32,17 @@ public class ApplicationModel {
      * Y coordinate of level in upper left corner
      */
     private int y = 0;
+
+    /**
+     * Store for images
+     */
+    private final ImageStore imageStore;
+
+    /**
+     * Creates a new instance of ApplicationModel.
+     * @param imageStore ImageStore to get images from.
+     */
+    public ApplicationModel(ImageStore imageStore) {
+        this.imageStore = imageStore;
+    }
 }
