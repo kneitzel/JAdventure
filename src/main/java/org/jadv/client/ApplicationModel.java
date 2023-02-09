@@ -3,6 +3,7 @@ package org.jadv.client;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.jadv.framework.Model;
 import org.jadv.model.level.Level;
 
 /**
@@ -36,13 +37,6 @@ public class ApplicationModel extends Model {
     /**
      * Store for images
      */
-    private final ImageStore imageStore;
-
-    /**
-     * Creates a new instance of ApplicationModel.
-     * @param imageStore ImageStore to get images from.
-     */
-    public ApplicationModel(ImageStore imageStore) {
-        this.imageStore = imageStore;
-    }
+    @Setter
+    private ImageStore imageStore;
 }

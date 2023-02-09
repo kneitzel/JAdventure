@@ -1,4 +1,4 @@
-package org.jadv.client;
+package org.jadv.framework;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,8 @@ import java.util.function.Consumer;
 public abstract class Model {
 
     /**
-     * List of people that are interested in any change events.
+     * List of consumers that are interested in changes of the model.
+     * This is mainly used for view which needs to be updated whenever the model changes.
      */
     private final List<Consumer<Model>> changeListenerList = new ArrayList<>();
 

@@ -10,15 +10,12 @@ public class LevelPanel extends JPanel {
 
     private final ApplicationModel model;
 
-    private final ImageStore imageStore;
-
     /**
      * Creates a new <code>JPanel</code> with a double buffer
      * and a flow layout.
      */
     public LevelPanel(ApplicationModel model) {
         this.model = model;
-        this.imageStore = model.getImageStore();
     }
 
     /**
@@ -77,7 +74,7 @@ public class LevelPanel extends JPanel {
 
 
     private void drawImage(Graphics g, String imgName, int x, int y, int dx, int dy, int scale, int viewX, int viewY) {
-        Image img = imageStore.getImage(imgName);
+        Image img = model.getImageStore().getImage(imgName);
         if (img == null) return;
 
         int newX = scale * (x - viewX - dx/2) / 100;

@@ -1,5 +1,7 @@
 package org.jadv.client;
 
+import org.jadv.framework.View;
+
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -15,8 +17,7 @@ public class ApplicationView extends View {
     private final JFrame gameFrame;
     private LevelPanel levelPanel;
 
-    public ApplicationView(ApplicationModel model) {
-        super(model);
+    public ApplicationView() {
         gameFrame = new JFrame();
         gameFrame.setSize(500, 400);
         gameFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -27,36 +28,6 @@ public class ApplicationView extends View {
         return (ApplicationModel) model;
     }
 
-    /**
-     * Gets the controller. Can be implemented including a cast to a child class of Controller.
-     *
-     * @return The Controller.
-     */
-    @Override
-    public ApplicationController getController() {
-        return (ApplicationController) controller;
-    }
-
-    protected void move(int dx, int dy) {
-        getModel().setX(Math.max(0, getModel().getX() + dx * getModel().getScaleFactor()/100));
-        getModel().setY(Math.max(0, getModel().getY() + dy * getModel().getScaleFactor()/100));
-        levelPanel.repaint();
-    }
-
-    protected void scale(int ds) {
-        int newScale = getModel().getScaleFactor() + ds;
-
-        if (newScale < 25) newScale = 25;
-        if (newScale > 1000) newScale = 10000;
-
-        int x = getModel().getX() * newScale / getModel().getScaleFactor();
-        int y = getModel().getY() * newScale / getModel().getScaleFactor();
-
-        getModel().setScaleFactor(newScale);
-        getModel().setX(x);
-        getModel().setY(y);
-        levelPanel.repaint();
-    }
     @Override
     public void init() {
         levelPanel = new LevelPanel(getModel());
@@ -72,12 +43,12 @@ public class ApplicationView extends View {
             public void keyTyped(KeyEvent e) {
                 super.keyTyped(e);
                 switch (e.getKeyChar()) {
-                    case 'w' -> move(0, -20);
-                    case 's' -> move(0, 20);
-                    case 'a' -> move(-20, 0);
-                    case 'd' -> move(20, 0);
-                    case 'o' -> scale(10);
-                    case 'p' -> scale(-10);
+                    case 'w' -> doAction(ApplicationCommands.MOVE_UP);
+                    case 's' -> doAction(ApplicationCommands.MOVE_DOWN);
+                    case 'a' -> doAction(ApplicationCommands.MOVE_LEFT);
+                    case 'd' -> doAction(ApplicationCommands.MOVE_RIGHT);
+                    case 'o' -> doAction(ApplicationCommands.SCALE_IN);
+                    case 'p' -> doAction(ApplicationCommands.SCALE_OUT);
                 }
 
             }
@@ -94,6 +65,7 @@ public class ApplicationView extends View {
 
     @Override
     public void updateView() {
+        gameFrame.repaint();
     }
 
     @Override

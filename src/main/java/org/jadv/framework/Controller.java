@@ -1,4 +1,4 @@
-package org.jadv.client;
+package org.jadv.framework;
 
 public abstract class Controller {
     /**
@@ -16,9 +16,10 @@ public abstract class Controller {
      * @param model Model to use.
      * @param view View to use.
      */
-    public void init(Model model, View view) {
+    public Controller(Model model, View view) {
         this.model = model;
         this.view = view;
+        view.setModel(model);
         view.setController(this);
         view.init();
     }
@@ -26,4 +27,6 @@ public abstract class Controller {
     public abstract View getView();
 
     public abstract Model getModel();
+
+    public abstract void doAction(Object action);
 }
