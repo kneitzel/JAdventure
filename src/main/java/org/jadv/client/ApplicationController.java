@@ -94,12 +94,7 @@ public class ApplicationController extends Controller {
         if (newScale < 25) newScale = 25;
         if (newScale > 1000) newScale = 10000;
 
-        int x = getModel().getX() * newScale / getModel().getScaleFactor();
-        int y = getModel().getY() * newScale / getModel().getScaleFactor();
-
         getModel().setScaleFactor(newScale);
-        getModel().setX(x);
-        getModel().setY(y);
         getModel().hasChanged();
     }
 

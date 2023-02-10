@@ -24,7 +24,7 @@ public abstract class View {
      */
     void setModel(Model model) {
         this.model = model;
-        model.addListener( m -> updateView() );
+        model.addChangeListener(m -> updateView() );
     }
 
     /**
@@ -50,9 +50,9 @@ public abstract class View {
     public abstract Model getModel();
 
     /**
-     * Initializes the view. Is called by the controller to set up the view.
+     * Initializes the view. This is called by the controller to set up the view.
      */
-    public abstract void init();
+    public void init() { }
 
     /**
      * Shows the view.

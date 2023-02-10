@@ -49,14 +49,7 @@ public class LevelPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        int realHeight = model.getLevel().getHeight() * model.getScaleFactor();
-        int realWidth = model.getLevel().getWidth() * model.getScaleFactor();
-
-        // To move: Calculate x/y
-        int maxY = realHeight - getHeight();
-        int maxX = realWidth - getWidth();
-        if (maxY < model.getY() && 0 <= maxY) model.setY(maxY);
-        if (maxX < model.getX() && 0 <= maxX) model.setX(maxX);
+        checkViewPoint();
 
         Graphics2D g2d = (Graphics2D) g;
         g2d.setBackground(Color.BLACK);
@@ -72,6 +65,21 @@ public class LevelPanel extends JPanel {
         }
     }
 
+    /**
+     * Checks that the ViewPoint is valid.
+     */
+    private void checkViewPoint() {
+        int realHeight = model.getLevel().getHeight() * model.getScaleFactor() / 100;
+        int realWidth = model.getLevel().getWidth() * model.getScaleFactor() / 100;
+
+        // To move: Calculate x/y
+        int maxY = realHeight - getHeight();
+        int maxX = realWidth - getWidth();
+        int currY = model.getY() * model.getScaleFactor() / 100;
+        int currX = model.getX() * model.getScaleFactor() / 100;
+        if (maxY < currY && 0 <= maxY) model.setY(maxY * 100 / model.getScaleFactor());
+        if (maxX < currX && 0 <= maxX) model.setX(maxX * 100 / model.getScaleFactor());
+    }
 
     private void drawImage(Graphics g, String imgName, int x, int y, int dx, int dy, int scale, int viewX, int viewY) {
         Image img = model.getImageStore().getImage(imgName);

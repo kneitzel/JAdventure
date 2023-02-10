@@ -14,21 +14,12 @@ public class ApplicationView extends View implements KeyListener {
     /**
      * Window of this game view.
      */
-    private final JFrame gameFrame;
+    private JFrame gameFrame;
 
     /**
      * Panel that displays the Level.
      */
     private LevelPanel levelPanel;
-
-    /**
-     * Creates a new instance of ApplicationView.
-     */
-    public ApplicationView() {
-        gameFrame = new JFrame();
-        gameFrame.setSize(500, 400);
-        gameFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-    }
 
     /**
      * Gets the model with the data.
@@ -41,6 +32,9 @@ public class ApplicationView extends View implements KeyListener {
 
     @Override
     public void init() {
+        gameFrame = new JFrame("JAdventure v0.1");
+        gameFrame.setSize(500, 400);
+        gameFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         levelPanel = new LevelPanel(getModel());
         gameFrame.setContentPane(levelPanel);
         gameFrame.addKeyListener(this);
@@ -53,7 +47,6 @@ public class ApplicationView extends View implements KeyListener {
      */
     @Override
     public void show() {
-        updateView();
         gameFrame.setVisible(true);
     }
 
