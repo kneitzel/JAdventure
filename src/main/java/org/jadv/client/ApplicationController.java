@@ -76,7 +76,7 @@ public class ApplicationController extends Controller {
     }
 
     @Override
-    public void doAction(Object action) {
+    public void handleAction(Object action) {
         if (action instanceof ApplicationCommands command) {
             doCommand(command);
         }

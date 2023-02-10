@@ -1,5 +1,8 @@
 package org.jadv.framework;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A generic View for an MVC UI.
  */
@@ -11,11 +14,9 @@ public abstract class View {
     protected Model model;
 
     /**
-     * Controller of this view.
-     * The connection from View to Controller is normally done through observer pattern.
-     * We have a controller base class so we can directly use that.
+     * Controller Interested in actions of this view.
      */
-    private Controller controller;
+    private final List<Controller> controller = new ArrayList<>();
 
     /**
      * Sets the model.
@@ -27,11 +28,19 @@ public abstract class View {
     }
 
     /**
-     * Sets the controller of the view.
-     * @param controller Controller to use.
+     * Adds the controller to the view.
+     * @param controller Controller to add.
      */
-    void setController(Controller controller) {
-        this.controller = controller;
+    void addController(Controller controller) {
+        this.controller.add(controller);
+    }
+
+    /**
+     * Removes an controller from the view.
+     * @param controller Controller to remove.
+     */
+    void removeController(Controller controller) {
+        this.controller.remove(controller);
     }
 
     /**
@@ -54,14 +63,19 @@ public abstract class View {
      * Updates the view so that the data of the model is shown.
      * This method is called whenever the model signals a change.
      */
-    public void updateView() {}
+    protected void updateView() {}
 
     /**
      * Updates the view if required. Copies data from controls to the model.
      */
-    public void updateModel() {}
+    protected void updateModel() {}
 
-    public void doAction(Object action) {
-        controller.doAction(action);
+    /**
+     * Sends an action to the controller
+     * @param action Action with additional information.
+     */
+    protected void sendAction(Object action) {
+        updateModel();
+        controller.forEach(c -> c.handleAction(action));
     }
 }

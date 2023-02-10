@@ -20,13 +20,25 @@ public abstract class Controller {
         this.model = model;
         this.view = view;
         view.setModel(model);
-        view.setController(this);
+        view.addController(this);
         view.init();
     }
 
+    /**
+     * Gets the view. Can be overriden with a return type that derived from View.
+     * @return The view the controller is workinh on.
+     */
     public abstract View getView();
 
+    /**
+     * Gets the model. Can be overriden with a return type that derived from Model.
+     * @return The model the controller is working with.
+     */
     public abstract Model getModel();
 
-    public abstract void doAction(Object action);
+    /**
+     * Handles an action. Is called by the View.
+     * @param action Information about the action that was requested by the user in the form.
+     */
+    public abstract void handleAction(Object action);
 }
