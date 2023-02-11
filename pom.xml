@@ -15,8 +15,12 @@
         <!-- Dependency versions -->
         <gson.version>2.10</gson.version>
         <junit.version>5.9.2</junit.version>
-        <lombok.version>1.18.24</lombok.version>
-        <mockito.version>4.11.0</mockito.version>
+        <lombok.version>1.18.26</lombok.version>
+        <mockito.version>5.1.1</mockito.version>
+        <pmd.version>6.54.0</pmd.version>
+
+        <!-- Plugin dependencies -->
+        <maven.pmd.plugin>3.16.0</maven.pmd.plugin>
 
         <!-- other properties -->
         <maven.compiler.source>17</maven.compiler.source>
@@ -67,4 +71,58 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <!-- PMD static code analysis -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>${maven.pmd.plugin}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>net.sourceforge.pmd</groupId>
+                        <artifactId>pmd-core</artifactId>
+                        <version>${pmd.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>net.sourceforge.pmd</groupId>
+                        <artifactId>pmd-java</artifactId>
+                        <version>${pmd.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>net.sourceforge.pmd</groupId>
+                        <artifactId>pmd-javascript</artifactId>
+                        <version>${pmd.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>net.sourceforge.pmd</groupId>
+                        <artifactId>pmd-jsp</artifactId>
+                        <version>${pmd.version}</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
+                    <minimumTokens>100</minimumTokens>
+                    <targetJdk>${java.version}</targetJdk>
+                    <rulesets>
+                        <ruleset>pmd-ruleset.xml</ruleset>
+                    </rulesets>
+                    <linkXRef>false</linkXRef>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <!-- pmd does not stop build when violations are found -->
+                            <goal>pmd</goal>
+
+                            <!-- check stops the build when violations are found -->
+                            <!-- <goal>check</goal> -->
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
