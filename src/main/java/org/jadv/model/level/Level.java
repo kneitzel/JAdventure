@@ -37,6 +37,11 @@ public class Level extends SavedObject implements Container {
     private int height;
 
     /**
+     * Resource name of a graphic.
+     */
+    private String graphicResource;
+
+    /**
      * Game objects inside the level.
      */
     @JsonAdapter(ListOfSavedObjectAdapter.class)

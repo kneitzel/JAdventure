@@ -15,4 +15,14 @@ public class CircleSize extends Size {
      * Radius of the circle around the object location.
      */
     private int radius;
+
+    @Override
+    public int getWidth() {
+        return radius;
+    }
+
+    @Override
+    public int getHeight() {
+        return radius;
+    }
 }

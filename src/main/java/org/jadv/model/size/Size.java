@@ -8,4 +8,7 @@ import org.jadv.serialization.SavedObjectAdapter;
  * Size of an GameObject
  */
 @JsonAdapter(SavedObjectAdapter.class)
-public abstract class Size extends SavedObject { }
+public abstract class Size extends SavedObject {
+    public abstract int getWidth();
+    public abstract int getHeight();
+}
