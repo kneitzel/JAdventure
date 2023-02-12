@@ -7,6 +7,8 @@ import org.jadv.model.SavedObject;
 import org.jadv.model.size.Size;
 import org.jadv.serialization.SavedObjectAdapter;
 
+import java.io.Serial;
+
 /**
  * An Object inside the JAdventure game.
  */
@@ -18,6 +20,13 @@ import org.jadv.serialization.SavedObjectAdapter;
 @Builder
 @EqualsAndHashCode(callSuper=true)
 public class GameObject extends SavedObject {
+
+
+    /**
+     * Serial version UID of GameObject.
+     */
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     /**
      * Name of the Object.

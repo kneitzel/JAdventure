@@ -21,9 +21,12 @@ final public class ListOfSavedObjectAdapter implements JsonSerializer<List<? ext
      */
     public JsonElement serialize(final List<? extends SavedObject> list, final Type interfaceType,
                                  final JsonSerializationContext context) {
-        if (list == null) return null;
+        if (list == null) {
+            return null;
+        }
+
         final JsonArray array = new JsonArray();
-        for (SavedObject obj : list) {
+        for (final SavedObject obj : list) {
             array.add(context.serialize(obj, SavedObject.class));
         }
         return array;
@@ -38,10 +41,10 @@ final public class ListOfSavedObjectAdapter implements JsonSerializer<List<? ext
      * @throws JsonParseException Throws an JsonParseException if deserialization is not possible.
      */
     public List<? extends SavedObject> deserialize(final JsonElement elem, final Type interfaceType,
-                                         final JsonDeserializationContext context) throws JsonParseException {
-        List<SavedObject> result = new ArrayList<>();
+                                         final JsonDeserializationContext context) {
+        final List<SavedObject> result = new ArrayList<>();
         final JsonArray array = (JsonArray) elem;
-        for (JsonElement element : array.asList()) {
+        for (final JsonElement element : array.asList()) {
             result.add(context.deserialize(element, SavedObject.class));
         }
         return result;

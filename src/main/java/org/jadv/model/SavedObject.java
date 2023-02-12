@@ -5,12 +5,23 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import org.jadv.serialization.SavedObjectAdapter;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 /**
  * An instance that can be saved through an Adapter and contains the name of the class as field.
  */
 @EqualsAndHashCode
 @JsonAdapter(SavedObjectAdapter.class)
-public abstract class SavedObject {
+@SuppressWarnings("PMD.AbstractClassWithoutAnyMethod")
+public abstract class SavedObject implements Serializable {
+
+    /**
+     * Serial version UID of Level
+     */
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     /**
      * Class name of the instance.
      */

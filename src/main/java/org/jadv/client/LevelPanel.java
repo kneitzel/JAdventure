@@ -5,16 +5,30 @@ import org.jadv.model.objects.GameObject;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.Serial;
 
+/**
+ * Panel to display a level.
+ */
 public class LevelPanel extends JPanel {
 
+    /**
+     * Serial version UID of LevelPanel
+     */
+    @Serial
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * ApplicationModel holding all required data.
+     */
     private final ApplicationModel model;
 
     /**
      * Creates a new <code>JPanel</code> with a double buffer
      * and a flow layout.
      */
-    public LevelPanel(ApplicationModel model) {
+    public LevelPanel(final ApplicationModel model) {
+        super();
         this.model = model;
     }
 
@@ -42,26 +56,25 @@ public class LevelPanel extends JPanel {
      * unexpected results if you cumulatively apply
      * another transform.
      *
-     * @param g the <code>Graphics</code> object to protect
+     * @param graphics the <code>Graphics</code> object to protect
      * @see #paint
      */
     @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
+    protected void paintComponent(final Graphics graphics) {
+        super.paintComponent(graphics);
 
         checkViewPoint();
 
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setBackground(Color.BLACK);
-        g2d.clearRect(0,0, getWidth(), getHeight());
+        final Graphics2D graphics2D = (Graphics2D) graphics;
+        graphics2D.setBackground(Color.BLACK);
+        graphics2D.clearRect(0,0, getWidth(), getHeight());
 
+        final Level level = model.getLevel();
 
-        Level level = model.getLevel();
+        drawImage(graphics2D, level.getGraphicResource(), level.getWidth()/2, level.getHeight()/2, level.getWidth(), level.getHeight(), model.getScaleFactor(), model.getX(), model.getY());
 
-        drawImage(g2d, level.getGraphicResource(), level.getWidth()/2, level.getHeight()/2, level.getWidth(), level.getHeight(), model.getScaleFactor(), model.getX(), model.getY());
-
-        for (GameObject object : level.getChildren()) {
-            drawImage(g2d, object.getGraphicResource(), object.getPosition().getX(), object.getPosition().getY(), object.getSize().getWidth(), object.getSize().getHeight(), model.getScaleFactor(), model.getX(), model.getY());
+        for (final GameObject object : level.getChildren()) {
+            drawImage(graphics2D, object.getGraphicResource(), object.getPosition().getX(), object.getPosition().getY(), object.getSize().getWidth(), object.getSize().getHeight(), model.getScaleFactor(), model.getX(), model.getY());
         }
     }
 
@@ -69,28 +82,48 @@ public class LevelPanel extends JPanel {
      * Checks that the ViewPoint is valid.
      */
     private void checkViewPoint() {
-        int realHeight = model.getLevel().getHeight() * model.getScaleFactor() / 100;
-        int realWidth = model.getLevel().getWidth() * model.getScaleFactor() / 100;
+        final int realHeight = model.getLevel().getHeight() * model.getScaleFactor() / 100;
+        final int realWidth = model.getLevel().getWidth() * model.getScaleFactor() / 100;
 
         // To move: Calculate x/y
-        int maxY = realHeight - getHeight();
-        int maxX = realWidth - getWidth();
-        int currY = model.getY() * model.getScaleFactor() / 100;
-        int currX = model.getX() * model.getScaleFactor() / 100;
-        if (maxY < currY && 0 <= maxY) model.setY(maxY * 100 / model.getScaleFactor());
-        if (maxX < currX && 0 <= maxX) model.setX(maxX * 100 / model.getScaleFactor());
+        final int maxY = realHeight - getHeight();
+        final int maxX = realWidth - getWidth();
+        final int currY = model.getY() * model.getScaleFactor() / 100;
+        final int currX = model.getX() * model.getScaleFactor() / 100;
+        if (maxY < currY && 0 <= maxY) {
+            model.setY(maxY * 100 / model.getScaleFactor());
+        }
+        if (maxX < currX && 0 <= maxX) {
+            model.setX(maxX * 100 / model.getScaleFactor());
+        }
     }
 
-    private void drawImage(Graphics g, String imgName, int x, int y, int dx, int dy, int scale, int viewX, int viewY) {
-        Image img = model.getImageStore().getImage(imgName);
-        if (img == null) return;
+    /**
+     * Draws an image.
+     * @param graphics Graphics to draw to.
+     * @param imgName Name of image to draw.
+     * @param x Position of the image in the level (x-coordinate).
+     * @param y Position of the image in the Level (y-coordinate).
+     * @param width Width of image.
+     * @param height height od image.
+     * @param scale Scale factor
+     * @param viewX View x-coordinate.
+     * @param viewY View y-coordinate.
+     */
+    @SuppressWarnings("PMD.ShortVariable")
+    private void drawImage(final Graphics graphics, final String imgName, final int x, final int y, final int width,
+                           final int height, final int scale, final int viewX, final int viewY) {
+        final Image img = model.getImageStore().getImage(imgName);
+        if (img == null) {
+            return;
+        }
 
-        int newX = scale * (x - viewX - dx/2) / 100;
-        int newY = scale * (y - viewY - dy/2) / 100;
-        int newDx = scale * dx / 100;
-        int newDy = scale * dy / 100;
+        final int newX = scale * (x - viewX - width/2) / 100;
+        final int newY = scale * (y - viewY - height/2) / 100;
+        final int newDx = scale * width / 100;
+        final int newDy = scale * height / 100;
 
-        g.drawImage(img, newX, newY, newDx, newDy, null);
+        graphics.drawImage(img, newX, newY, newDx, newDy, null);
     }
 
 }

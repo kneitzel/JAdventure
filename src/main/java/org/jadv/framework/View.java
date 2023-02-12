@@ -6,6 +6,7 @@ import java.util.List;
 /**
  * A generic View for an MVC UI.
  */
+@SuppressWarnings("PMD.ShortClassName")
 public abstract class View {
 
     /**
@@ -22,7 +23,7 @@ public abstract class View {
      * Sets the model.
      * @param model Model to use.
      */
-    void setModel(Model model) {
+    /* default */ void setModel(final Model model) {
         this.model = model;
         model.addChangeListener(m -> updateView() );
     }
@@ -31,7 +32,7 @@ public abstract class View {
      * Adds the controller to the view.
      * @param controller Controller to add.
      */
-    void addController(Controller controller) {
+    public void addController(final Controller controller) {
         this.controller.add(controller);
     }
 
@@ -39,7 +40,7 @@ public abstract class View {
      * Removes an controller from the view.
      * @param controller Controller to remove.
      */
-    void removeController(Controller controller) {
+    public void removeController(final Controller controller) {
         this.controller.remove(controller);
     }
 
@@ -52,7 +53,10 @@ public abstract class View {
     /**
      * Initializes the view. This is called by the controller to set up the view.
      */
-    public void init() { }
+    @SuppressWarnings("PMD.EmptyMethodInAbstractClassShouldBeAbstract")
+    public void init() {
+        // Nothing to do, just an option for deriving classes.
+    }
 
     /**
      * Shows the view.
@@ -63,18 +67,24 @@ public abstract class View {
      * Updates the view so that the data of the model is shown.
      * This method is called whenever the model signals a change.
      */
-    protected void updateView() {}
+    @SuppressWarnings("PMD.EmptyMethodInAbstractClassShouldBeAbstract")
+    protected void updateView() {
+        // Nothing to do, just an option for deriving classes.
+    }
 
     /**
      * Updates the view if required. Copies data from controls to the model.
      */
-    protected void updateModel() {}
+    @SuppressWarnings("PMD.EmptyMethodInAbstractClassShouldBeAbstract")
+    protected void updateModel() {
+        // Nothing to do, just an option for deriving classes.
+    }
 
     /**
      * Sends an action to the controller
      * @param action Action with additional information.
      */
-    protected void sendAction(Object action) {
+    protected void sendAction(final Object action) {
         updateModel();
         controller.forEach(c -> c.handleAction(action));
     }

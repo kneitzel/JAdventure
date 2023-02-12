@@ -35,7 +35,7 @@ public class LevelService extends ResourceService<Level> {
      * @param resourceName Name of the resource.
      * @return The level if resource was found, else null.
      */
-    public Level loadLevel(String resourceName) {
+    public Level loadLevel(final String resourceName) {
         return loadResource(resourceName);
     }
 
@@ -45,8 +45,8 @@ public class LevelService extends ResourceService<Level> {
      * @return The loaded level.
      */
     @Override
-    protected Level createResource(InputStream inputStream) {
-        Gson gson = new Gson();
+    protected Level createResource(final InputStream inputStream) {
+        final Gson gson = new Gson();
         return (Level) gson.fromJson(new InputStreamReader(inputStream), SavedObject.class);
     }
 }

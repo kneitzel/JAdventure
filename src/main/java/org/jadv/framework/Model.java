@@ -26,7 +26,7 @@ public abstract class Model {
      * Adds a Listener to the change listener list.
      * @param listener Listener to add.
      */
-    public void addChangeListener(Consumer<Model> listener) {
+    public void addChangeListener(final Consumer<Model> listener) {
         changeListenerList.add(listener);
     }
 
@@ -34,7 +34,7 @@ public abstract class Model {
      * Removes a change listener of the list.
      * @param listener Listener to remove.
      */
-    public void removeChangeListener(Consumer<Model> listener) {
+    public void removeChangeListener(final Consumer<Model> listener) {
         changeListenerList.remove(listener);
     }
 }

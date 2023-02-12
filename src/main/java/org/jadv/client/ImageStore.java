@@ -5,19 +5,37 @@ import org.jadv.model.objects.GameObject;
 import org.jadv.services.ImageService;
 
 import java.awt.*;
-import java.util.HashMap;
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
-public class ImageStore {
+/**
+ * ImageStore holds required images with their resource names.
+ */
+public class ImageStore implements Serializable {
 
-    private final ImageService imageService;
+    /**
+     * Serial version UID of ImageStore
+     */
+    @Serial
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * ImageService to load images.
+     */
+    private final transient ImageService imageService;
 
     /**
      * Store for all Images
      */
-    private final Map<String, Image> images = new HashMap<>();
+    private final Map<String, Image> images = new ConcurrentHashMap<>();
 
-    public ImageStore(ImageService imageService) {
+    /**
+     * Creates a new instance of ImageStore.
+     * @param imageService ImageService to use to load images.
+     */
+    public ImageStore(final ImageService imageService) {
         this.imageService = imageService;
     }
 
@@ -26,7 +44,7 @@ public class ImageStore {
      * @param name Name of the image.
      * @return true if the image is inside the map, else false.
      */
-    public boolean hasImage(String name) {
+    public boolean hasImage(final String name) {
         return images.containsKey(name);
     }
 
@@ -35,7 +53,7 @@ public class ImageStore {
      * @param name Name of the image.
      * @return The image if available else null.
      */
-    public Image getImage(String name) {
+    public Image getImage(final String name) {
         return images.get(name);
     }
 
@@ -44,7 +62,7 @@ public class ImageStore {
      * @param name Name of image.
      * @param image Image to put in store.
      */
-    public void addImage(String name, Image image) {
+    public void addImage(final String name, final Image image) {
         images.put(name, image);
     }
 
@@ -52,10 +70,10 @@ public class ImageStore {
      * Checks all images used by a level and loads missing images.
      * @param level Level to check.
      */
-    public void checkAndLoadImages(Level level) {
+    public void checkAndLoadImages(final Level level) {
         checkAndLoadImage(level.getGraphicResource());
 
-        for (GameObject child: level.getChildren()) {
+        for (final GameObject child: level.getChildren()) {
             checkAndLoadImage(child.getGraphicResource());
         }
     }
@@ -64,11 +82,15 @@ public class ImageStore {
      * Checks and loads Images if required.
      * @param name Name of the image.
      */
-    public void checkAndLoadImage(String name) {
-        if (hasImage(name)) return;
+    public void checkAndLoadImage(final String name) {
+        if (hasImage(name)) {
+            return;
+        }
 
-        Image image = imageService.loadImage(name);
-        if (image != null) addImage(name, image);
+        final Image image = imageService.loadImage(name);
+        if (image != null) {
+            addImage(name, image);
+        }
     }
 
 }

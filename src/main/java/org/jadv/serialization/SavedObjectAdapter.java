@@ -29,7 +29,10 @@ final public class SavedObjectAdapter implements JsonSerializer<SavedObject>, Js
     @Override
     public JsonElement serialize(final SavedObject object, final Type interfaceType,
                                  final JsonSerializationContext context) {
-        if (object == null) return null;
+        if (object == null) {
+            return null;
+        }
+
         return context.serialize(object, object.getClass());
     }
 
@@ -43,11 +46,11 @@ final public class SavedObjectAdapter implements JsonSerializer<SavedObject>, Js
      */
     @Override
     public SavedObject deserialize(final JsonElement elem, final Type interfaceType,
-                                   final JsonDeserializationContext context) throws JsonParseException {
+                                   final JsonDeserializationContext context) {
         final JsonObject wrapper = (JsonObject) elem;
         final JsonElement typeName = getType(wrapper);
         final Type actualType = typeForName(typeName);
-        SavedObject result =  context.deserialize(elem, actualType);
+        final SavedObject result =  context.deserialize(elem, actualType);
         setParentReferencesIfRequired(result);
         return result;
     }
@@ -72,7 +75,7 @@ final public class SavedObjectAdapter implements JsonSerializer<SavedObject>, Js
      * @return The requested class.
      * @throws JsonParseException Thrown if the class is not available / known.
      */
-    private Type typeForName(final JsonElement typeElem) throws JsonParseException {
+    private Type typeForName(final JsonElement typeElem) {
         try {
             return Class.forName(typeElem.getAsString());
         } catch (ClassNotFoundException e) {
@@ -86,9 +89,11 @@ final public class SavedObjectAdapter implements JsonSerializer<SavedObject>, Js
      * @return The requested JsonElement.
      * @throws JsonParseException Thrown if the requested element is not available.
      */
-    private JsonElement getType(final JsonObject wrapper) throws JsonParseException {
+    private JsonElement getType(final JsonObject wrapper) {
         final JsonElement elem = wrapper.get(TYPE_ELEMENT_NAME);
-        if (elem == null) throw new JsonParseException("no '" + TYPE_ELEMENT_NAME + "' member found in what was expected to be an interface wrapper");
+        if (elem == null) {
+            throw new JsonParseException("No '" + TYPE_ELEMENT_NAME + "' member found in what was expected to be an interface wrapper");
+        }
         return elem;
     }
 }

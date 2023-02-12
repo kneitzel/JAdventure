@@ -17,11 +17,6 @@ public class ApplicationView extends View implements KeyListener {
     private JFrame gameFrame;
 
     /**
-     * Panel that displays the Level.
-     */
-    private LevelPanel levelPanel;
-
-    /**
      * Gets the model with the data.
      * @return The model with the data that is shown inside the view.
      */
@@ -30,12 +25,15 @@ public class ApplicationView extends View implements KeyListener {
         return (ApplicationModel) model;
     }
 
+    /**
+     * Initializes this view.
+     */
     @Override
     public void init() {
         gameFrame = new JFrame("JAdventure v0.1");
         gameFrame.setSize(500, 400);
         gameFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        levelPanel = new LevelPanel(getModel());
+        final LevelPanel levelPanel = new LevelPanel(getModel());
         gameFrame.setContentPane(levelPanel);
         gameFrame.addKeyListener(this);
         levelPanel.setFocusable(true);
@@ -72,11 +70,11 @@ public class ApplicationView extends View implements KeyListener {
      * See the class description for {@link KeyEvent} for a definition of
      * a key typed event.
      *
-     * @param e the event to be processed
+     * @param event the event to be processed
      */
     @Override
-    public void keyTyped(KeyEvent e) {
-        switch (e.getKeyChar()) {
+    public void keyTyped(final KeyEvent event) {
+        switch (event.getKeyChar()) {
             case 'w' -> sendAction(ApplicationCommands.MOVE_UP);
             case 's' -> sendAction(ApplicationCommands.MOVE_DOWN);
             case 'a' -> sendAction(ApplicationCommands.MOVE_LEFT);
@@ -91,18 +89,22 @@ public class ApplicationView extends View implements KeyListener {
      * See the class description for {@link KeyEvent} for a definition of
      * a key pressed event.
      *
-     * @param e the event to be processed
+     * @param event the event to be processed
      */
     @Override
-    public void keyPressed(KeyEvent e) { }
+    public void keyPressed(final KeyEvent event) {
+        // Nothing to do on key press.
+    }
 
     /**
      * Invoked when a key has been released.
      * See the class description for {@link KeyEvent} for a definition of
      * a key released event.
      *
-     * @param e the event to be processed
+     * @param event the event to be processed
      */
     @Override
-    public void keyReleased(KeyEvent e) { }
+    public void keyReleased(final KeyEvent event) {
+        // Nothing to do on key release.
+    }
 }

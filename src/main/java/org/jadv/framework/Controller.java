@@ -1,5 +1,8 @@
 package org.jadv.framework;
 
+/**
+ * base Controller for a MVC Pattern.
+ */
 public abstract class Controller {
     /**
      * Model to use to hand over all required Data to the View.
@@ -16,7 +19,7 @@ public abstract class Controller {
      * @param model Model to use.
      * @param view View to use.
      */
-    public Controller(Model model, View view) {
+    public Controller(final Model model, final View view) {
         this.model = model;
         this.view = view;
         view.setModel(model);

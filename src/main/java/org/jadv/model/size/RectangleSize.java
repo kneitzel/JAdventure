@@ -2,6 +2,8 @@ package org.jadv.model.size;
 
 import lombok.*;
 
+import java.io.Serial;
+
 /**
  * Rectangle Size
  */
@@ -13,12 +15,18 @@ import lombok.*;
 public class RectangleSize extends Size {
 
     /**
+     * Serial version UID of RectangleSize
+     */
+    @Serial
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Width of the object.
      */
-    int width;
+    private int width;
 
     /**
      * Height of the object.
      */
-    int height;
+    private int height;
 }

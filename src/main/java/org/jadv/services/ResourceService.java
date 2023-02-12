@@ -24,11 +24,17 @@ public abstract class ResourceService<R> {
      * @param prefix Prefix of the resource e.g. "/images/".
      * @param type Type of the resource to load e.g. ".json".
      */
-    public ResourceService(String prefix, String type) {
+    public ResourceService(final String prefix, final String type) {
         this.prefix = prefix;
         this.type = type;
     }
 
+    /**
+     * Creates a Resource of generic type R from an input stream.
+     * @param inputStream Input stream to read data for requested resource.
+     * @return The resource.
+     * @throws IOException IOEception when data cannot be read.
+     */
     protected abstract R createResource(InputStream inputStream) throws IOException;
 
     /**
@@ -36,8 +42,8 @@ public abstract class ResourceService<R> {
      * @param resourceName Name of the resource to load.
      * @return The Resource R if loaded correctly or null.
      */
-    public R loadResource(String resourceName) {
-        String resourcePath = prefix + resourceName + type;
+    public R loadResource(final String resourceName) {
+        final String resourcePath = prefix + resourceName + type;
         try (InputStream inputStream = getClass().getResourceAsStream(resourcePath)) {
             if (inputStream == null) {
                 return null;

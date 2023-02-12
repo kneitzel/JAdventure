@@ -32,7 +32,7 @@ public class ImageService extends ResourceService<Image>{
      * @param resourceName Name of the resource.
      * @return Image of the resource of null if it could not be loaded.
      */
-    public Image loadImage(String resourceName) {
+    public Image loadImage(final String resourceName) {
         return loadResource(resourceName);
     }
 
@@ -43,7 +43,7 @@ public class ImageService extends ResourceService<Image>{
      * @throws IOException OException is thrown if the image cannot be loaded.
      */
     @Override
-    protected Image createResource(InputStream inputStream) throws IOException {
+    protected Image createResource(final InputStream inputStream) throws IOException {
         return ImageIO.read(inputStream);
     }
 }
