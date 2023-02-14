@@ -74,7 +74,7 @@ public class LevelPanel extends JPanel {
         drawImage(graphics2D, level.getGraphicResource(), level.getWidth()/2, level.getHeight()/2, level.getWidth(), level.getHeight(), model.getScaleFactor(), model.getX(), model.getY());
 
         for (final GameObject object : level.getChildren()) {
-            drawImage(graphics2D, object.getGraphicResource(), object.getPosition().getX(), object.getPosition().getY(), object.getSize().getWidth(), object.getSize().getHeight(), model.getScaleFactor(), model.getX(), model.getY());
+            drawImage(graphics2D, object.getGraphicResource(), (int)object.getPosition().getX(), (int)object.getPosition().getY(), object.getSize().getWidth(), object.getSize().getHeight(), model.getScaleFactor(), model.getX(), model.getY());
         }
     }
 

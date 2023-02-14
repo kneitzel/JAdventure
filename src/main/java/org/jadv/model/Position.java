@@ -23,13 +23,13 @@ public class Position implements Serializable {
      * X Coordiante.
      */
     @SuppressWarnings("PMD.ShortVariable")
-    private int x;
+    private double x;
 
     /**
      * Y Coordinate
      */
     @SuppressWarnings("PMD.ShortVariable")
-    private int y;
+    private double y;
 
     /**
      * Parent of this Object.

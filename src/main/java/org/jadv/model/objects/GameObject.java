@@ -21,7 +21,6 @@ import java.io.Serial;
 @EqualsAndHashCode(callSuper=true)
 public class GameObject extends SavedObject {
 
-
     /**
      * Serial version UID of GameObject.
      */
