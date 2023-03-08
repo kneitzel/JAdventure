@@ -52,7 +52,7 @@ public class ApplicationView extends View implements KeyListener {
      * Updates the view.
      */
     @Override
-    protected void updateView() {
+    public void updateView() {
         super.updateView();
         gameFrame.repaint();
     }

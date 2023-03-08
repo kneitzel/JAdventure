@@ -19,7 +19,7 @@ public class ListOfSavedObjectAdapterTest {
      */
     @Test
     public void testSerialization() {
-        String jsonLevel = "{\"name\":\"TestLevel\",\"width\":1000,\"height\":1000,\"graphicResource\":\"testlevel\",\"objects\":[{\"name\":\"TestObject\",\"size\":{\"width\":10,\"height\":10,\"type\":\"org.jadv.model.size.RectangleSize\"},\"position\":{\"x\":1,\"y\":2},\"type\":\"org.jadv.model.objects.GameObject\"},{\"name\":\"TestObject2\",\"size\":{\"width\":10,\"height\":10,\"type\":\"org.jadv.model.size.RectangleSize\"},\"position\":{\"x\":2,\"y\":3},\"type\":\"org.jadv.model.objects.GameObject\"}],\"type\":\"org.jadv.model.level.Level\"}";
+        String jsonLevel = "{\"name\":\"TestLevel\",\"width\":1000,\"height\":1000,\"graphicResource\":\"testlevel\",\"objects\":[{\"name\":\"TestObject\",\"size\":{\"width\":10,\"height\":10,\"type\":\"org.jadv.model.size.RectangleSize\"},\"position\":{\"x\":1.0,\"y\":2.0},\"type\":\"org.jadv.model.objects.GameObject\"},{\"name\":\"TestObject2\",\"size\":{\"width\":10,\"height\":10,\"type\":\"org.jadv.model.size.RectangleSize\"},\"position\":{\"x\":2.0,\"y\":3.0},\"type\":\"org.jadv.model.objects.GameObject\"}],\"type\":\"org.jadv.model.level.Level\"}";
         Level level = new Level("TestLevel", 1000, 1000, "testlevel");
         GameObject obj = GameObject.builder()
                 .name("TestObject")
