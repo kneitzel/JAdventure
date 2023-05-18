@@ -1,12 +1,16 @@
 package org.jadv.services;
 
+import lombok.extern.log4j.Log4j2;
+
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.MessageFormat;
 
 /**
  * Class to load a resource.
  * @param <R> Type of the resource to load.
  */
+@Log4j2
 public abstract class ResourceService<R> {
 
     /**
@@ -43,16 +47,17 @@ public abstract class ResourceService<R> {
      * @return The Resource R if loaded correctly or null.
      */
     public R loadResource(final String resourceName) {
+        log.info(MessageFormat.format("Loading resource {0}", resourceName));
         final String resourcePath = prefix + resourceName + type;
         try (InputStream inputStream = getClass().getResourceAsStream(resourcePath)) {
             if (inputStream == null) {
+                log.warn(MessageFormat.format("Resource {0} not found!", resourcePath));
                 return null;
             }
 
             return createResource(inputStream);
         } catch (IOException exception) {
-            System.out.println("Unable to load level resource: " + resourcePath + " (" + exception.getMessage() + ")");
-            exception.printStackTrace();
+            log.error(MessageFormat.format("Unable to load level resource: {0}", resourcePath), exception);
         }
         return null;
     }

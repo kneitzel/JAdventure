@@ -1,13 +1,17 @@
 package org.jadv.services;
 
+import lombok.extern.log4j.Log4j2;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.MessageFormat;
 
 /**
  * Service to provide images.
  */
+@Log4j2
 public class ImageService extends ResourceService<Image>{
 
     /**
@@ -33,6 +37,7 @@ public class ImageService extends ResourceService<Image>{
      * @return Image of the resource of null if it could not be loaded.
      */
     public Image loadImage(final String resourceName) {
+        log.info(MessageFormat.format("Loading Image {0}", resourceName));
         return loadResource(resourceName);
     }
 

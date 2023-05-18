@@ -7,11 +7,11 @@ import java.io.Serial;
 import java.io.Serializable;
 
 /**
- * Position stores the position of an GameObject inside the game.
+ * Position stores the position of an GameObject inside the game and is immutable.
  */
 @Getter
 @AllArgsConstructor
-public class Position implements Serializable {
+public final class Position implements Serializable {
 
     /**
      * Serial version UID of Position
@@ -23,13 +23,13 @@ public class Position implements Serializable {
      * X Coordiante.
      */
     @SuppressWarnings("PMD.ShortVariable")
-    private double x;
+    private final double x;
 
     /**
      * Y Coordinate
      */
     @SuppressWarnings("PMD.ShortVariable")
-    private double y;
+    private final double y;
 
     /**
      * Parent of this Object.
@@ -37,14 +37,12 @@ public class Position implements Serializable {
     private transient Container parent;
 
     /**
-     * Sets the parent. Only works if parent is not set already.
-     * @param parent Parent to set.
+     * Created a new Position taking the x/y coordinates of the given position and adds the container.
+     * @param position Position to take x / y coordinate from.
+     * @param container New Container to set.
+     * @return New Position with x/y coordinate of given position and parent Container.
      */
-    public void setParent(final Container parent) {
-        if (this.parent != null) {
-            throw new IllegalStateException("Parent already set!");
-        }
-
-        this.parent = parent;
+    public static Position createNewPosition(Position position, Container container) {
+        return new Position(position.x, position.y, container);
     }
 }

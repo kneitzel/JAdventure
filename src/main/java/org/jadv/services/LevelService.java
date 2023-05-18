@@ -1,15 +1,18 @@
 package org.jadv.services;
 
 import com.google.gson.Gson;
+import lombok.extern.log4j.Log4j2;
 import org.jadv.model.SavedObject;
 import org.jadv.model.level.Level;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.MessageFormat;
 
 /**
  * Service to load SavedObject of a resource.
  */
+@Log4j2
 public class LevelService extends ResourceService<Level> {
 
     /**
@@ -36,6 +39,7 @@ public class LevelService extends ResourceService<Level> {
      * @return The level if resource was found, else null.
      */
     public Level loadLevel(final String resourceName) {
+        log.info(MessageFormat.format("Loading level: {0}", resourceName));
         return loadResource(resourceName);
     }
 
