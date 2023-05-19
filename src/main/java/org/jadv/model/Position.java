@@ -8,21 +8,21 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor
-public class Position {
+public final class Position {
     /**
      * X Coordiante.
      */
-    private int x;
+    private final int x;
 
     /**
      * Y Coordinate
      */
-    private int y;
+    private final int y;
 
     /**
      * Parent of this Object.
      */
-    private transient Container parent;
+    private final transient Container parent;
 
     /**
      * Created a new Position taking the x/y coordinates of the given position and adds the container.
