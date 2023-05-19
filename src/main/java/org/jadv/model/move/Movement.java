@@ -3,8 +3,6 @@ package org.jadv.model.move;
 import lombok.Getter;
 import org.jadv.model.Position;
 
-import java.util.function.Function;
-
 /**
  * Movement to a target.
  */
@@ -13,7 +11,7 @@ public class Movement {
     /**
      * Target of the movement.
      */
-    private Position target;
+    private final Position target;
 
     /**
      * Flag indicating if movement is done.

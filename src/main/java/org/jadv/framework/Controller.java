@@ -32,12 +32,12 @@ public abstract class Controller {
     /**
      * Model to use to hand over all required Data to the View.
      */
-    protected Model model;
+    protected final Model model;
 
     /**
      * View used to display the data of the Model.
      */
-    protected View view;
+    protected final View view;
 
     /**
      * Initializes the controller. Should be called by the derived Class.

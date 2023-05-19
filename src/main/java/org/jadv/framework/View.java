@@ -82,7 +82,7 @@ public abstract class View {
     /**
      * Initializes the view. This is called by the controller to set up the view.
      */
-    @SuppressWarnings("PMD.EmptyMethodInAbstractClassShouldBeAbstract")
+    @SuppressWarnings({"PMD.EmptyMethodInAbstractClassShouldBeAbstract", "EmptyMethod"})
     public void init() {
         // Nothing to do, just an option for deriving classes.
     }
@@ -96,7 +96,7 @@ public abstract class View {
      * Updates the view so that the data of the model is shown.
      * This method is called whenever the model signals a change.
      */
-    @SuppressWarnings("PMD.EmptyMethodInAbstractClassShouldBeAbstract")
+    @SuppressWarnings({"PMD.EmptyMethodInAbstractClassShouldBeAbstract", "EmptyMethod"})
     public void updateView() {
         // Nothing to do, just an option for deriving classes.
     }
@@ -104,7 +104,7 @@ public abstract class View {
     /**
      * Updates the view if required. Copies data from controls to the model.
      */
-    @SuppressWarnings("PMD.EmptyMethodInAbstractClassShouldBeAbstract")
+    @SuppressWarnings({"PMD.EmptyMethodInAbstractClassShouldBeAbstract", "EmptyMethod"})
     protected void updateModel() {
         // Nothing to do, just an option for deriving classes.
     }

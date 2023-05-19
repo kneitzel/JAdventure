@@ -2,12 +2,9 @@ package org.jadv.serialization;
 
 import com.google.gson.*;
 import org.jadv.model.Container;
-import org.jadv.model.Position;
 import org.jadv.model.SavedObject;
-import org.jadv.model.objects.GameObject;
 
 import java.lang.reflect.Type;
-import java.util.Objects;
 
 /**
  * Gson Adapter to (de-)serialize derived types.
