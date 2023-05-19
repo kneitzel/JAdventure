@@ -13,4 +13,18 @@ public interface Container {
      * @return List of GameObjects.
      */
     List<GameObject> getChildren();
+
+    /**
+     * Fixes the Parent Setting in all child elements.
+     * <remark>
+     *     The parent setting is not serialized. So it is important, that after deserialization of a container all
+     *     child entry positions ill be fixed.
+     * </remark>
+     */
+    default void fixParent() {
+        getChildren().stream()
+                .filter(child -> child.getPosition() != null)
+                .forEach(child -> child.setPosition(Position.createNewPosition(child.getPosition(), this)));
+
+    }
 }

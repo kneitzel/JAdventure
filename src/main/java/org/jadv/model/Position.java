@@ -8,25 +8,29 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor
-public class Position {
+public final class Position {
     /**
      * X Coordiante.
      */
-    private int x;
+    private final int x;
 
     /**
      * Y Coordinate
      */
-    private int y;
+    private final int y;
 
     /**
      * Parent of this Object.
      */
-    private transient Container parent;
+    private transient final Container parent;
 
-    public void setParent(final Container parent) {
-        if (this.parent != null) throw new IllegalStateException("Parent already set!");
-
-        this.parent = parent;
+    /**
+     * Created a new Position taking the x/y coordinates of the given position and adds the container.
+     * @param position Position to take x / y coordinate from.
+     * @param container New Container to set.
+     * @return New Position with x/y coordinate of given position and parent Container.
+     */
+    public static Position createNewPosition(Position position, Container container) {
+        return new Position(position.x, position.y, container);
     }
 }
