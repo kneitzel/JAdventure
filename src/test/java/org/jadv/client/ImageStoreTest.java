@@ -19,13 +19,13 @@ import static org.mockito.Mockito.when;
  * Tests the ImageStore class.
  */
 @ExtendWith(MockitoExtension.class)
-public class ImageStoreTest {
+class ImageStoreTest {
 
     /**
      * Tests the checkAndLoadImages method of ImageStore.
      */
     @Test
-    public void loadingImagesOfLevel() {
+    void loadingImagesOfLevel() {
         Image testImage1 = new BufferedImage(10, 10, BufferedImage.TYPE_INT_RGB);
         Image testImage2 = new BufferedImage(10, 10, BufferedImage.TYPE_INT_RGB);
         ImageService imageMockService = Mockito.mock(ImageService.class);
@@ -51,7 +51,7 @@ public class ImageStoreTest {
      * Tests the checkAndLoadImages method of ImageStore with a Level which has a GameObject inside without existing resource.
      */
     @Test
-    public void loadingImagesOfLevelWithProblemAtChild() {
+    void loadingImagesOfLevelWithProblemAtChild() {
         Image testImage = new BufferedImage(10, 10, BufferedImage.TYPE_INT_RGB);
         ImageService imageMockService = Mockito.mock(ImageService.class);
         when(imageMockService.loadImage("existing")).thenReturn(testImage);
@@ -76,7 +76,7 @@ public class ImageStoreTest {
      * Tests loading of a single image.
      */
     @Test
-    public void testCheckAndLoadSingleImage() {
+    void testCheckAndLoadSingleImage() {
         Image testImage = new BufferedImage(10, 10, BufferedImage.TYPE_INT_RGB);
         ImageService imageMockService = Mockito.mock(ImageService.class);
         when(imageMockService.loadImage("existing")).thenReturn(testImage);
@@ -90,6 +90,4 @@ public class ImageStoreTest {
         );
 
     }
-
-
 }

@@ -10,7 +10,7 @@ import java.lang.reflect.Type;
  * Gson Adapter to (de-)serialize derived types.
  * Just serialize / deserialize with type SavedObject to use this adapter.
  */
-final public class SavedObjectAdapter implements JsonSerializer<SavedObject>, JsonDeserializer<SavedObject> {
+ public final class SavedObjectAdapter implements JsonSerializer<SavedObject>, JsonDeserializer<SavedObject> {
 
     /**
      * Name of the element that describes the type.

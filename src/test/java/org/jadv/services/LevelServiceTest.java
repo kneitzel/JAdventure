@@ -10,7 +10,7 @@ class LevelServiceTest {
      * Tests loading of a test level resource.
      */
     @Test
-    public void testLoadingLevel() {
+    void testLoadingLevel() {
         LevelService levelService = new LevelService();
 
         Level level =  levelService.loadLevel("testlevel");
@@ -27,7 +27,7 @@ class LevelServiceTest {
      * Tests that null is given back when the resource cannot be loaded.
      */
     @Test
-    public void testFailedLoading() {
+    void testFailedLoading() {
         LevelService levelService = new LevelService();
 
         Level level =  levelService.loadLevel("non/existing");

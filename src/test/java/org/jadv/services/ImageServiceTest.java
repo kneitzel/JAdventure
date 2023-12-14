@@ -15,7 +15,7 @@ class ImageServiceTest {
      * Tests loading of a test level image with a known size.
      */
     @Test
-    public void testLoadingLevel() {
+    void testLoadingLevel() {
         ImageService imageService = new ImageService();
 
         Image image =  imageService.loadImage("level/testlevel");
@@ -31,7 +31,7 @@ class ImageServiceTest {
      * Tests that null is given back when the resource cannot be loaded.
      */
     @Test
-    public void testFailedLoading() {
+    void testFailedLoading() {
         ImageService imageService = new ImageService();
 
         Image image =  imageService.loadImage("non/existing");

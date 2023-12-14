@@ -44,7 +44,7 @@ public abstract class Controller {
      * @param model Model to use.
      * @param view View to use.
      */
-    public Controller(final Model model, final View view) {
+    protected Controller(final Model model, final View view) {
         this.model = model;
         this.view = view;
         view.setModel(model);

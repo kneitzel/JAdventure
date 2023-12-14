@@ -15,7 +15,7 @@ import static org.mockito.Mockito.verify;
  * Tests for the {@link Model} class.
  */
 @ExtendWith(MockitoExtension.class)
-public class ModelTest {
+class ModelTest {
 
     @Mock
     Consumer<Model> listenerMock;

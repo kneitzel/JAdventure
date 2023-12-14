@@ -11,7 +11,7 @@ import java.util.List;
  * Gson Adapter to (de-)serialize a List of SavedObjects
  * Prefix the List with @JsonAdapter(ListOfSavedObjectAdapter.class) to use this Adapter
  */
-final public class ListOfSavedObjectAdapter implements JsonSerializer<List<? extends SavedObject>>, JsonDeserializer<List<? extends SavedObject>> {
+public final class ListOfSavedObjectAdapter implements JsonSerializer<List<? extends SavedObject>>, JsonDeserializer<List<? extends SavedObject>> {
     /**
      * Serializes a list of SavedInstance to JSON.
      * @param list Object to serialize.

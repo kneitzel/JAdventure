@@ -12,13 +12,13 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Tests the ListOfSavedObjectAdapter.
  */
-public class ListOfSavedObjectAdapterTest {
+class ListOfSavedObjectAdapterTest {
 
     /**
      * Tests the serialization of an Object (using class Level) that has a list of SavedObject.
      */
     @Test
-    public void testSerialization() {
+    void testSerialization() {
         String jsonLevel = "{\"name\":\"TestLevel\",\"width\":1000,\"height\":1000,\"graphicResource\":\"testlevel\",\"objects\":[{\"name\":\"TestObject\",\"size\":{\"width\":10,\"height\":10,\"type\":\"org.jadv.model.size.RectangleSize\"},\"position\":{\"x\":1.0,\"y\":2.0},\"type\":\"org.jadv.model.objects.GameObject\"},{\"name\":\"TestObject2\",\"size\":{\"width\":10,\"height\":10,\"type\":\"org.jadv.model.size.RectangleSize\"},\"position\":{\"x\":2.0,\"y\":3.0},\"type\":\"org.jadv.model.objects.GameObject\"}],\"type\":\"org.jadv.model.level.Level\"}";
         Level level = new Level("TestLevel", 1000, 1000, "testlevel");
         GameObject obj = GameObject.builder()
@@ -42,7 +42,7 @@ public class ListOfSavedObjectAdapterTest {
      * Tests the deserialization of an Object (using class Level) that has a list of SavedObject.
      */
     @Test
-    public void testDeserialization() {
+    void testDeserialization() {
 
         String jsonLevel = "{\"name\":\"TestLevel\",\"width\":1000,\"height\":1000,\"graphicResource\":\"testlevel\",\"objects\":[{\"name\":\"TestObject\",\"size\":{\"width\":10,\"height\":10,\"type\":\"org.jadv.model.size.RectangleSize\"},\"position\":{\"x\":1,\"y\":2},\"type\":\"org.jadv.model.objects.GameObject\"},{\"name\":\"TestObject2\",\"size\":{\"width\":10,\"height\":10,\"type\":\"org.jadv.model.size.RectangleSize\"},\"position\":{\"x\":2,\"y\":3},\"type\":\"org.jadv.model.objects.GameObject\"}],\"type\":\"org.jadv.model.level.Level\"}";
 

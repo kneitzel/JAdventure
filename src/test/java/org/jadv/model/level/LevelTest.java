@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Tests the logic of the Level class.
  */
-public class LevelTest {
+class LevelTest {
     /**
      * Tests the adding of an object to the level
      * <remark>
@@ -17,7 +17,7 @@ public class LevelTest {
      * </remark>
      */
     @Test
-    public void testAddObject() {
+    void testAddObject() {
         Level level = new Level("TestLevel", 1000, 1000, "testlevel");
         GameObject obj = GameObject.builder().name("TestObject").size(new RectangleSize(10, 10)).build();
         level.addObject(obj, 1, 2);
@@ -32,7 +32,7 @@ public class LevelTest {
      * Tests that objects can be removed from a level.
      */
     @Test
-    public void testRemoveObject() {
+    void testRemoveObject() {
         Level level = new Level("TestLevel", 1000, 1000, "testlevel");
         GameObject obj1 = GameObject.builder().name("TestObject").size(new RectangleSize(10, 10)).build();
         level.addObject(obj1, 1, 2);
@@ -47,7 +47,7 @@ public class LevelTest {
      * Tests remove does not throw an exception on Object that is not inside the Instance.
      */
     @Test
-    public void testRemoveOfNotAddedObject() {
+    void testRemoveOfNotAddedObject() {
         Level level = new Level("TestLevel", 1000, 1000, "testlevel");
         GameObject obj1 = GameObject.builder().name("TestObject").size(new RectangleSize(10, 10)).build();
         level.addObject(obj1, 1, 2);
@@ -62,7 +62,7 @@ public class LevelTest {
      * Tests the getObjects method.
      */
     @Test
-    public void testGetChildren() {
+    void testGetChildren() {
         Level level = new Level("TestLevel", 1000, 1000, "testlevel");
         GameObject obj = GameObject.builder().name("TestObject").size(new RectangleSize(10, 10)).build();
         level.addObject(obj, 1, 2);
