@@ -21,7 +21,10 @@
         <pmd.version>6.54.0</pmd.version>
 
         <!-- Plugin dependencies -->
+        <maven.javadoc.plugin>3.6.3</maven.javadoc.plugin>
         <maven.pmd.plugin>3.16.0</maven.pmd.plugin>
+        <maven.project.info.reports.plugin>3.5.0</maven.project.info.reports.plugin>
+        <maven.site.plugin>3.12.1</maven.site.plugin>
 
         <!-- other properties -->
         <maven.compiler.release>17</maven.compiler.release>
@@ -86,6 +89,13 @@
 
     <build>
         <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>${maven.site.plugin}</version>
+            </plugin>
+
             <!-- PMD static code analysis -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -137,4 +147,57 @@
             </plugin>
         </plugins>
     </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>${maven.project.info.reports.plugin}</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>index</report>
+                            <report>dependencies</report>
+                            <report>licenses</report>
+                            <report>summary</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven.javadoc.plugin}</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>javadoc</report>
+                        </reports>
+                    </reportSet>
+                    <reportSet>
+                        <id>tests</id>
+                        <configuration>
+                            <show>private</show>
+                        </configuration>
+                        <reports>
+                            <report>test-javadoc</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>${maven.pmd.plugin}</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>pmd</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+        </plugins>
+    </reporting>
 </project>
