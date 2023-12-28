@@ -12,9 +12,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class LevelTest {
     /**
      * Tests the adding of an object to the level
-     * <remark>
+     * <p>
      *     After adding an object to the level at a specified point, the position of the object must be correct.
-     * </remark>
+     * </p>
      */
     @Test
     void testAddObject() {

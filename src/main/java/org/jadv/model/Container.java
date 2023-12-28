@@ -16,10 +16,10 @@ public interface Container {
 
     /**
      * Fixes the Parent Setting in all child elements.
-     * <remark>
+     * <p>
      *     The parent setting is not serialized. So it is important, that after deserialization of a container all
      *     child entry positions ill be fixed.
-     * </remark>
+     * </p>
      */
     default void fixParent() {
         getChildren().stream()

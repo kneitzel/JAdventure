@@ -62,9 +62,9 @@ public class Player extends GameObject implements Container {
 
     /**
      * Player does next step.
-     * <remark>
-     *     This methode is calles automatically by the engine.
-     * </remark>
+     * <p>
+     *     This methode is calls automatically by the engine.
+     * </p>
      */
     public void move() {
         if (movement != null) {

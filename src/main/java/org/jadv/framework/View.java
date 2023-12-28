@@ -16,7 +16,7 @@ import java.util.List;
  * the view. The setModel() method also registers a change listener on the model using the addChangeListener() method of
  * the Model class, which calls the updateView() method whenever the model changes.
  * <p>
- * The View class has a private instance variable controller of type List<Controller> that represents the controller
+ * The View class has a private instance variable controller of type List&lt;Controller&gt; that represents the controller
  * interested in actions of this view. The View class provides methods for adding and removing controllers to this list
  * using the addController() and removeController() methods.
  * <p>
